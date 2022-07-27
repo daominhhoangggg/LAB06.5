@@ -19,8 +19,7 @@ export const DISHES = [
       {
         id: 1,
         rating: 4,
-        comment:
-          'Sends anyone to heaven, I wish I could get my mother-in-law to eat it!',
+        comment: 'Sends anyone to heaven, I wish I could get my mother-in-law to eat it!',
         author: 'Paul McVites',
         date: '2014-09-05T17:57:28.556094Z',
       },
@@ -67,8 +66,7 @@ export const DISHES = [
       {
         id: 1,
         rating: 4,
-        comment:
-          'Sends anyone to heaven, I wish I could get my mother-in-law to eat it!',
+        comment: 'Sends anyone to heaven, I wish I could get my mother-in-law to eat it!',
         author: 'Paul McVites',
         date: '2014-09-05T17:57:28.556094Z',
       },
@@ -102,8 +100,7 @@ export const DISHES = [
     category: 'appetizer',
     label: 'New',
     price: '1.99',
-    description:
-      'A quintessential ConFusion experience, is it a vada or is it a donut?',
+    description: 'A quintessential ConFusion experience, is it a vada or is it a donut?',
     comments: [
       {
         id: 0,
@@ -115,8 +112,7 @@ export const DISHES = [
       {
         id: 1,
         rating: 4,
-        comment:
-          'Sends anyone to heaven, I wish I could get my mother-in-law to eat it!',
+        comment: 'Sends anyone to heaven, I wish I could get my mother-in-law to eat it!',
         author: 'Paul McVites',
         date: '2014-09-05T17:57:28.556094Z',
       },
@@ -163,8 +159,7 @@ export const DISHES = [
       {
         id: 1,
         rating: 4,
-        comment:
-          'Sends anyone to heaven, I wish I could get my mother-in-law to eat it!',
+        comment: 'Sends anyone to heaven, I wish I could get my mother-in-law to eat it!',
         author: 'Paul McVites',
         date: '2014-09-05T17:57:28.556094Z',
       },
