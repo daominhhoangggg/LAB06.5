@@ -31,3 +31,7 @@ address {
 .navbar-dark {
   background-color: #512da8;
 }
+
+.navbar-expand-md .navbar-collapse {
+  display: inline-flex !important;
+}
