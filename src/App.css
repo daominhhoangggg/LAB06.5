@@ -32,6 +32,8 @@ address {
   background-color: #512da8;
 }
 
-.navbar-expand-md .navbar-collapse {
-  display: inline-flex !important;
+@media (min-width: 768px) {
+  .navbar-expand-md .navbar-collapse {
+    display: inline-flex !important;
+  }
 }
