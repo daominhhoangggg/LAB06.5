@@ -1,5 +1,22 @@
-import React from 'react';
-import { Card, CardBody, CardImg, CardTitle, CardText, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import React, { Component } from 'react';
+import {
+  Card,
+  CardBody,
+  CardImg,
+  CardTitle,
+  CardText,
+  Breadcrumb,
+  BreadcrumbItem,
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  Col,
+} from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 function RenderDish({ dish }) {
@@ -38,10 +55,71 @@ function RenderComments({ comments }) {
             );
           })}
         </ul>
+        <CommentForm />
       </div>
     );
   } else {
     return <div></div>;
+  }
+}
+
+class CommentForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isModalOpen: false,
+    };
+
+    this.toggleModal = this.toggleModal.bind(this);
+  }
+  toggleModal() {
+    this.setState({
+      isModalOpen: !this.state.isModalOpen,
+    });
+  }
+
+  handleSubmitComment(event) {
+    this.toggleModal;
+    alert('Rating: ' + this.rating.value);
+  }
+
+  render() {
+    return (
+      <div>
+        <Button outline onClick={this.toggleModal}>
+          <span className="fa fa-pencil fa-lg"></span> Submit Comment
+        </Button>
+        <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+          <ModalHeader toggle={this.toggleModal}>Submit Comment</ModalHeader>
+          <ModalBody>
+            <Form>
+              <FormGroup row>
+                <Col>
+                  <Label htmlFor="rating">Rating</Label>
+                  <Input type="select" name="rating">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </Input>
+                </Col>
+              </FormGroup>
+              <FormGroup>
+                <Label htmlFor="name">Your Name</Label>
+                <Input type="text" id="rating" name="rating" />
+              </FormGroup>
+              <FormGroup row>
+                <Label htmlFor="comment">Your Comment</Label>
+                <Col>
+                  <Input type="textarea" id="comment" name="comment" rows="6" />
+                </Col>
+              </FormGroup>
+            </Form>
+          </ModalBody>
+        </Modal>
+      </div>
+    );
   }
 }
 
