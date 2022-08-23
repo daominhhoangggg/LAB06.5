@@ -16,7 +16,7 @@ function RenderCard({ item }) {
 
 function Home(props) {
   return (
-    <div className="container">
+    <div className="container my-3">
       <div className="row align-item-start">
         <div className="col-12 col-md m-1">
           <RenderCard item={props.dish} />

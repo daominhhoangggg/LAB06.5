@@ -11,12 +11,11 @@ import {
   Modal,
   ModalHeader,
   ModalBody,
-  Form,
-  FormGroup,
   Label,
-  Input,
   Col,
+  Row,
 } from 'reactstrap';
+import { Control, LocalForm, Errors } from 'react-redux-form';
 import { Link } from 'react-router-dom';
 
 function RenderDish({ dish }) {
@@ -63,6 +62,9 @@ function RenderComments({ comments }) {
   }
 }
 
+const maxLength = len => val => !val || val.length <= len;
+const minLength = len => val => !val || val.length >= len;
+
 class CommentForm extends Component {
   constructor(props) {
     super(props);
@@ -71,6 +73,7 @@ class CommentForm extends Component {
     };
 
     this.toggleModal = this.toggleModal.bind(this);
+    this.handleSubmitComment = this.handleSubmitComment.bind(this);
   }
   toggleModal() {
     this.setState({
@@ -78,9 +81,9 @@ class CommentForm extends Component {
     });
   }
 
-  handleSubmitComment(event) {
-    this.toggleModal;
-    alert('Rating: ' + this.rating.value);
+  handleSubmitComment(values) {
+    console.log('Current State is: ' + JSON.stringify(values));
+    alert('Current State is: ' + JSON.stringify(values));
   }
 
   render() {
@@ -92,30 +95,64 @@ class CommentForm extends Component {
         <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
           <ModalHeader toggle={this.toggleModal}>Submit Comment</ModalHeader>
           <ModalBody>
-            <Form>
-              <FormGroup row>
+            <LocalForm onSubmit={values => this.handleSubmitComment(values)}>
+              <Label htmlFor=".rating">Rating</Label>
+              <Row className="form-group">
                 <Col>
-                  <Label htmlFor="rating">Rating</Label>
-                  <Input type="select" name="rating">
+                  <Control.select model=".rating" name="rating" className="form-control">
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
                     <option>4</option>
                     <option>5</option>
-                  </Input>
+                  </Control.select>
                 </Col>
-              </FormGroup>
-              <FormGroup>
-                <Label htmlFor="name">Your Name</Label>
-                <Input type="text" id="rating" name="rating" />
-              </FormGroup>
-              <FormGroup row>
-                <Label htmlFor="comment">Your Comment</Label>
+              </Row>
+              <Label htmlFor=".name">Your Name</Label>
+              <Row className="form-group">
                 <Col>
-                  <Input type="textarea" id="comment" name="comment" rows="6" />
+                  <Control.text
+                    model=".name"
+                    id="name"
+                    name="name"
+                    placeholder="Your name"
+                    validators={{
+                      minLength: minLength(3),
+                      maxLength: maxLength(15),
+                    }}
+                    className="form-control"
+                  />
+                  <Errors
+                    className="text-danger"
+                    model=".name"
+                    show="touched"
+                    messages={{
+                      minLength: 'Must be greater than 2 characters',
+                      maxLength: 'Must be 15 characters or less',
+                    }}
+                  />
                 </Col>
-              </FormGroup>
-            </Form>
+              </Row>
+              <Label htmlFor=".comment">Comment</Label>
+              <Row className="form-group">
+                <Col>
+                  <Control.textarea
+                    model=".comment"
+                    id="comment"
+                    name="comment"
+                    rows="6"
+                    className="form-control"
+                  />
+                </Col>
+              </Row>
+              <Row className="form-group">
+                <Col>
+                  <Button type="submit" color="primary">
+                    Submit
+                  </Button>
+                </Col>
+              </Row>
+            </LocalForm>
           </ModalBody>
         </Modal>
       </div>
