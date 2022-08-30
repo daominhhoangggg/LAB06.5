@@ -1,30 +1,15 @@
 import React, { Component } from 'react';
-import {
-  Card,
-  CardBody,
-  CardImg,
-  CardTitle,
-  CardText,
-  Breadcrumb,
-  BreadcrumbItem,
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  Label,
-  Col,
-  Row,
-} from 'reactstrap';
+import { Card, CardBody, CardImg, CardTitle, CardText, Breadcrumb, BreadcrumbItem, Button, Modal, ModalHeader, ModalBody, Label, Col, Row } from 'reactstrap';
 import { Control, LocalForm, Errors } from 'react-redux-form';
 import { Link } from 'react-router-dom';
-import { addComment } from '../redux/ActionCreators';
 import { Loading } from './LoadingComponent';
+import { baseUrl } from '../shared/baseUrl';
 
 function RenderDish({ dish }) {
   return (
     <div className="col-12 col-md-5 m-1">
       <Card>
-        <CardImg width="100%" src={dish.image} alt={dish.name} />
+        <CardImg width="100%" src={baseUrl + dish.image} alt={dish.name} />
         <CardBody>
           <CardTitle>{dish.name}</CardTitle>
           <CardText>{dish.description}</CardText>
@@ -138,13 +123,7 @@ class CommentForm extends Component {
               <Label htmlFor=".comment">Comment</Label>
               <Row className="form-group">
                 <Col>
-                  <Control.textarea
-                    model=".comment"
-                    id="comment"
-                    name="comment"
-                    rows="6"
-                    className="form-control"
-                  />
+                  <Control.textarea model=".comment" id="comment" name="comment" rows="6" className="form-control" />
                 </Col>
               </Row>
               <Row className="form-group">
@@ -196,11 +175,7 @@ const DishDetail = props => {
         </div>
         <div className="row">
           <RenderDish dish={props.dish} />
-          <RenderComments
-            comments={props.comments}
-            addComment={props.addComment}
-            dishId={props.dish.id}
-          />
+          <RenderComments comments={props.comments} addComment={props.addComment} dishId={props.dish.id} />
         </div>
       </div>
     );
